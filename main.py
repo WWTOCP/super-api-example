@@ -34,3 +34,11 @@ def get_item(item_id: int) -> Item:
         return items[item_id]
     else:
         raise HTTPException(status_code=404, detail=f"Item {item_id} not found")
+        
+@app.delete("/items/{item_id}", response_model=Item)
+def delete_item(item_id: int) -> Item:
+    if item_id < len(items):
+        item = items.pop()
+        return item
+    else:
+        raise HTTPException(status_code=404, detail=f"Item {item_id} not found")
