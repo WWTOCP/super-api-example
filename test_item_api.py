@@ -1,5 +1,6 @@
 import pytest
 import requests
+import platform
 
 ENDPOINT = "http://localhost:8080"
 
@@ -10,6 +11,8 @@ def test_can_call_endpoint():
     else:
         response = requests.get(ENDPOINT)
     assert response.status_code == 200
+    
+    print("This request is being served by server: " + platform.node())
 
 @pytest.mark.repeat(10)  # Run the test 10 times
 def test_can_create_item():
@@ -24,6 +27,8 @@ def test_can_create_item():
         response = requests.post(ENDPOINT + "/items", json=payload)
     assert response.status_code == 200
     
+    print("This request is being served by server: " + platform.node())
+    
     #data = response.json()
     #print(data)
 
@@ -34,6 +39,8 @@ def test_get_items():
     else:
         response = requests.get(ENDPOINT + "/items")
     assert response.status_code == 200
+    
+    print("This request is being served by server: " + platform.node())
     
     #data = response.json();
     #print(data)
@@ -46,6 +53,8 @@ def test_get_an_item():
         response = requests.get(ENDPOINT + "/items/0")
     assert response.status_code == 200
     
+    print("This request is being served by server: " + platform.node())
+    
     #data = response.json();
     #print(data)
     
@@ -56,6 +65,8 @@ def test_delete_an_item():
     else:
         response = requests.delete(ENDPOINT + "/items/0")
     assert response.status_code == 200
+    
+    print("This request is being served by server: " + platform.node())
     
     #data = response.json();
     #print(data)
