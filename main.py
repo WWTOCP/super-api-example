@@ -1,55 +1,56 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from fastapi import FastAPI
 import platform
+import requests
 
 app = FastAPI()
 
 
-class Item(BaseModel):
-    text: str = None
-    is_done: bool = False
-
-
-items = []
+ENDPOINT_MARIADB = "https://qod-api-route-vpc-test-08-workload.apps.workload3.rh.wwtpoc.local"
+ENDPOINT_MYSQL = "https://qod-api-route-vpc-test-08-workload2.apps.workload3.rh.wwtpoc.local"
+ENDPOINT_COCKROACHDB = "https://qod-api-route-vpc-test-08-workload3.apps.workload3.rh.wwtpoc.local"
+ENDPOINT_MONGODB = "https://qod-api-route-vpc-test-08-workload4.apps.workload3.rh.wwtpoc.local"
+ENDPOINT_CASSANDRA = "https://qod-api-route-vpc-test-08-workload5.apps.workload3.rh.wwtpoc.local"
+ENDPOINT_REDIS = "https://qod-api-route-vpc-test-08-workload6.apps.workload3.rh.wwtpoc.local"
 
 
 @app.get("/")
 def root():
     print("This request is being served by server: " + platform.node())
 
-    return {"Hello": "World"}
+    return {"Hello": "Superman"}
 
 
-@app.post("/items")
-def create_item(item: Item):
+@app.get("/mariadb/daily")
+def get_daily_quote_from_mariadb():
     print("This request is being served by server: " + platform.node())
+    
+    response = requests.get(ENDPOINT_MARIADB + "/daily", verify=False)
 
-    items.append(item)
-    return items
+    return response.json()
 
 
-@app.get("/items", response_model=list[Item])
-def list_items(limit: int = 10):
+@app.get("/mariadb/random")
+def get_random_quote_from_mariadb():
     print("This request is being served by server: " + platform.node())
+    
+    response = requests.get(ENDPOINT_MARIADB + "/random", verify=False)
 
-    return items[0:limit]
+    return response.json()
+    
 
-
-@app.get("/items/{item_id}", response_model=Item)
-def get_item(item_id: int) -> Item:
+@app.get("/mysql/daily")
+def get_daily_quote_from_mysql():
     print("This request is being served by server: " + platform.node())
+    
+    response = requests.get(ENDPOINT_MYSQL + "/daily", verify=False)
 
-    if item_id < len(items):
-        return items[item_id]
-    else:
-        raise HTTPException(status_code=404, detail=f"Item {item_id} not found")
-        
-@app.delete("/items/{item_id}", response_model=Item)
-def delete_item(item_id: int) -> Item:
+    return response.json()
+
+
+@app.get("/mysql/random")
+def get_random_quote_from_mysql():
     print("This request is being served by server: " + platform.node())
+    
+    response = requests.get(ENDPOINT_MYSQL + "/random", verify=False)
 
-    if item_id < len(items):
-        item = items.pop()
-        return item
-    else:
-        raise HTTPException(status_code=404, detail=f"Item {item_id} not found")
+    return response.json()
