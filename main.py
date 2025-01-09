@@ -54,3 +54,21 @@ def get_random_quote_from_mysql():
     response = requests.get(ENDPOINT_MYSQL + "/random", verify=False)
 
     return response.json()
+
+
+@app.get("/cockroachdb/daily")
+def get_daily_quote_from_cockroachdb():
+    print("This request is being served by server: " + platform.node())
+    
+    response = requests.get(ENDPOINT_COCKROACHDB + "/daily", verify=False)
+
+    return response.json()
+
+
+@app.get("/cockroachdb/random")
+def get_random_quote_from_cockroachdb():
+    print("This request is being served by server: " + platform.node())
+    
+    response = requests.get(ENDPOINT_COCKROACHDB + "/random", verify=False)
+
+    return response.json()
