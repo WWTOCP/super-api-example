@@ -6,11 +6,11 @@ app = FastAPI()
 
 
 ENDPOINT_MARIADB = "https://qod-api-route-vpc-test-08-workload.apps.workload3.rh.wwtpoc.local"
-ENDPOINT_MYSQL = "https://qod-api-route-vpc-test-08-workload2.apps.workload3.rh.wwtpoc.local"
-ENDPOINT_COCKROACHDB = "https://qod-api-route-vpc-test-08-workload3.apps.workload3.rh.wwtpoc.local"
-ENDPOINT_MONGODB = "https://qod-api-route-vpc-test-08-workload4.apps.workload3.rh.wwtpoc.local"
-ENDPOINT_CASSANDRA = "https://qod-api-route-vpc-test-08-workload5.apps.workload3.rh.wwtpoc.local"
-ENDPOINT_REDIS = "https://qod-api-route-vpc-test-08-workload6.apps.workload3.rh.wwtpoc.local"
+ENDPOINT_MYSQL = "https://qod-api-route-vpc-test-08-workload02.apps.workload3.rh.wwtpoc.local"
+ENDPOINT_COCKROACHDB = "https://qod-api-route-vpc-test-08-workload03.apps.workload3.rh.wwtpoc.local"
+ENDPOINT_MONGODB = "https://qod-api-route-vpc-test-08-workload04.apps.workload3.rh.wwtpoc.local"
+ENDPOINT_CASSANDRA = "https://qod-api-route-vpc-test-08-workload05.apps.workload3.rh.wwtpoc.local"
+ENDPOINT_REDIS = "https://qod-api-route-vpc-test-08-workload06.apps.workload3.rh.wwtpoc.local"
 
 
 @app.get("/")
