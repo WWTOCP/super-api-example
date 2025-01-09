@@ -59,3 +59,27 @@ def test_get_random_quote_from_mysql():
     print(data)
 
     assert response.status_code == 200
+
+@pytest.mark.repeat(10)  # Run the test 10 times
+def test_get_daily_quote_from_cockroachdb():
+    if "https" in ENDPOINT.lower():
+        response = requests.get(ENDPOINT + "/cockroachdb/daily", verify=False)
+    else:
+        response = requests.get(ENDPOINT + "/cockroachdb/daily")
+    
+    data = response.json();
+    print(data)
+
+    assert response.status_code == 200
+    
+@pytest.mark.repeat(10)  # Run the test 10 times
+def test_get_random_quote_from_cockroachdb():
+    if "https" in ENDPOINT.lower():
+        response = requests.get(ENDPOINT + "/cockroachdb/random", verify=False)
+    else:
+        response = requests.get(ENDPOINT + "/cockroachdb/random")
+    
+    data = response.json();
+    print(data)
+
+    assert response.status_code == 200
