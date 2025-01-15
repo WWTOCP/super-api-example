@@ -75,7 +75,7 @@ def get_random_quote_from_cockroachdb():
 
 
 @app.get("/mongodb/daily")
-def get_daily_quote_from_cockroachdb():
+def get_daily_quote_from_mongodb():
     print("This request is being served by server: " + platform.node())
     
     response = requests.get(ENDPOINT_MONGODB + "/daily", verify=False)
@@ -84,9 +84,45 @@ def get_daily_quote_from_cockroachdb():
 
 
 @app.get("/mongodb/random")
-def get_random_quote_from_cockroachdb():
+def get_random_quote_from_mongodb():
     print("This request is being served by server: " + platform.node())
     
     response = requests.get(ENDPOINT_MONGODB + "/random", verify=False)
+
+    return response.json()
+    
+
+@app.get("/cassandra/daily")
+def get_daily_quote_from_cassandra():
+    print("This request is being served by server: " + platform.node())
+    
+    response = requests.get(ENDPOINT_CASSANDRA + "/daily", verify=False)
+
+    return response.json()
+
+
+@app.get("/cassandra/random")
+def get_random_quote_from_cassandra():
+    print("This request is being served by server: " + platform.node())
+    
+    response = requests.get(ENDPOINT_CASSANDRA + "/random", verify=False)
+
+    return response.json()
+    
+    
+@app.get("/redis/daily")
+def get_daily_quote_from_redis):
+    print("This request is being served by server: " + platform.node())
+    
+    response = requests.get(ENDPOINT_REDIS + "/daily", verify=False)
+
+    return response.json()
+
+
+@app.get("/redis/random")
+def get_random_quote_from_redis():
+    print("This request is being served by server: " + platform.node())
+    
+    response = requests.get(ENDPOINT_REDIS + "/random", verify=False)
 
     return response.json()
