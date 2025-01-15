@@ -87,6 +87,6 @@ def get_daily_quote_from_cockroachdb():
 def get_random_quote_from_cockroachdb():
     print("This request is being served by server: " + platform.node())
     
-    response = requests.get(ENDPOINT_mONGODB + "/random", verify=False)
+    response = requests.get(ENDPOINT_MONGODB + "/random", verify=False)
 
     return response.json()
