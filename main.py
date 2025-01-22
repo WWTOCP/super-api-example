@@ -111,7 +111,7 @@ def get_random_quote_from_cassandra():
     
     
 @app.get("/redis/daily")
-def get_daily_quote_from_redis):
+def get_daily_quote_from_redis():
     print("This request is being served by server: " + platform.node())
     
     response = requests.get(ENDPOINT_REDIS + "/daily", verify=False)
