@@ -9,8 +9,8 @@ ENDPOINT_MARIADB = "https://qod-api-route-vpc-test-08-workload.apps.workload3.rh
 ENDPOINT_MYSQL = "https://qod-api-route-vpc-test-08-workload02.apps.workload3.rh.wwtpoc.local"
 ENDPOINT_COCKROACHDB = "https://qod-api-route-vpc-test-08-workload03.apps.workload3.rh.wwtpoc.local"
 ENDPOINT_MONGODB = "https://qod-api-route-vpc-test-08-workload04.apps.workload3.rh.wwtpoc.local"
-ENDPOINT_CASSANDRA = "https://qod-api-route-vpc-test-08-workload05.apps.workload3.rh.wwtpoc.local"
-ENDPOINT_REDIS = "https://qod-api-route-vpc-test-08-workload06.apps.workload3.rh.wwtpoc.local"
+ENDPOINT_REDIS = "https://qod-api-route-vpc-test-08-workload05.apps.workload3.rh.wwtpoc.local"
+ENDPOINT_CASSANDRA = "https://qod-api-route-vpc-test-08-workload06.apps.workload3.rh.wwtpoc.local"
 
 
 @app.get("/")
@@ -91,24 +91,6 @@ def get_random_quote_from_mongodb():
 
     return response.json()
     
-
-@app.get("/cassandra/daily")
-def get_daily_quote_from_cassandra():
-    print("This request is being served by server: " + platform.node())
-    
-    response = requests.get(ENDPOINT_CASSANDRA + "/daily", verify=False)
-
-    return response.json()
-
-
-@app.get("/cassandra/random")
-def get_random_quote_from_cassandra():
-    print("This request is being served by server: " + platform.node())
-    
-    response = requests.get(ENDPOINT_CASSANDRA + "/random", verify=False)
-
-    return response.json()
-    
     
 @app.get("/redis/daily")
 def get_daily_quote_from_redis():
@@ -124,5 +106,23 @@ def get_random_quote_from_redis():
     print("This request is being served by server: " + platform.node())
     
     response = requests.get(ENDPOINT_REDIS + "/random", verify=False)
+
+    return response.json()
+    
+
+@app.get("/cassandra/daily")
+def get_daily_quote_from_cassandra():
+    print("This request is being served by server: " + platform.node())
+    
+    response = requests.get(ENDPOINT_CASSANDRA + "/daily", verify=False)
+
+    return response.json()
+
+
+@app.get("/cassandra/random")
+def get_random_quote_from_cassandra():
+    print("This request is being served by server: " + platform.node())
+    
+    response = requests.get(ENDPOINT_CASSANDRA + "/random", verify=False)
 
     return response.json()
