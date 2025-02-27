@@ -18,3 +18,9 @@ def root():
     print("This request is being served by server: " + platform.node())
 
     return {"Hello": "Superman"}
+    
+@app.get("/version")
+def root():
+    print("This request is being served by server: " + platform.node())
+
+    return {"1.0.0"}
