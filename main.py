@@ -20,6 +20,13 @@ def root():
     return {"Hello": "Superman"}
 
 
+@app.get("/")
+def version():
+    print("This request is being served by server: " + platform.node())
+
+    return {"1.0.0"}
+
+
 @app.get("/mariadb/daily")
 def get_daily_quote_from_mariadb():
     print("This request is being served by server: " + platform.node())
