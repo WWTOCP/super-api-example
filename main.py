@@ -20,7 +20,7 @@ def root():
     return {"Hello": "Superman"}
     
 @app.get("/version")
-def root():
+def version():
     print("This request is being served by server: " + platform.node())
 
     return {"1.0.0"}
